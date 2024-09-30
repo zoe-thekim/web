@@ -1,13 +1,13 @@
-package com.web.zoe;
+package com.zoe.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ZoeApplication {
+public class WebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ZoeApplication.class, args);
+		SpringApplication.run(WebApplication.class, args);
 	}
 
 }
