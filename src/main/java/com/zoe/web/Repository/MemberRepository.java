@@ -1,5 +1,6 @@
-package com.zoe.web;
+package com.zoe.web.Repository;
 
+import com.zoe.web.Entity.Member;
 import org.springframework.stereotype.Repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

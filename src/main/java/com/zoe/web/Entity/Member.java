@@ -1,4 +1,4 @@
-package com.zoe.web;
+package com.zoe.web.Entity;
 
 import lombok.Getter;
 import lombok.Setter;
