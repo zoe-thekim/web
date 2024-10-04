@@ -14,11 +14,11 @@
 </head>
 
 <!-- th:replace 속성은 해당 속성이 선언된 html 태그를 다른 html 파일로 치환. fragments 폴더 아래 header.html 파일의 "th:fragment=header" 영역을 가져옴 -->
-<div th:replace="fragments/header::header"></div>
+<div th:replace="~{fragments/header::header}"></div>
 <body>
     <!-- layout에서 변경되는 영역을 fragment로 설정. -->
     <div layout:fragment="content" class="container"></div>
 
 </body>
 <!-- header와 마찬가지로 fragments 폴더 아래에 footer.html의 "th:fragment=footer" 영역을 가져옴 -->
-<div th:replace="fragments/footer::footer"></div>
+<div th:replace="~{fragments/footer::footer}"></div>

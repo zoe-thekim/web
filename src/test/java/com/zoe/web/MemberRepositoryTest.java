@@ -22,15 +22,15 @@ public class MemberRepositoryTest {
     public void testMember() throws Exception {
         //given
         Member member = new Member();
-        member.setUsername("memberA");
+        member.setMEMBER_NO(1);
 
         //when
-        Long savedId = memberRepository.save(member);
-        Member findMember = memberRepository.find(savedId);
+        int savedId = memberRepository.save(member);
+        Member findUser = memberRepository.find(savedId);
 
         //then
-        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
+        Assertions.assertThat(findUser.getMEMBER_NO()).isEqualTo(member.getMEMBER_NO());
+        Assertions.assertThat(findUser.getMEMBER_ID()).isEqualTo(member.getMEMBER_ID());
 
     }
 }
