@@ -1,34 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import logo from './logo.svg';
+import React, {Component, Fragment, useEffect, useState} from 'react';
 import './App.css';
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 
-function App() {
-    const [hello, setHello] = useState('')
+import {BrowserRouter as Router,Route,Routes} from "react-router-dom";
+import Home from "./Components/Home";
+import Login from "./Member/Login";
+import Join from "./Member/Join";
 
-    useEffect(() => {
-        axios.get('/api/hello')
-            .then(response => setHello(response.data))
-            .catch(error => console.log(error))
-    }, []);
-    return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-            {hello}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component{
+    constructor(props) {
+        super(props);
+    }
+    render(){
+        return(
+            <Router>
+                <Fragment>
+                    <Header />
+                    <div className={"container-fluid"}>
+                        <Routes>
+                            <Route path={"/"} element={<Home/>}/>
+                            <Route path={"/Member/Login"} element={<Login/>}/>
+                            <Route path={"/Member/Join"} element={<Join/>}/>
+                        </Routes>
+                    </div>
+                    <Footer />
+                </Fragment>
+            </Router>
+        )
+    }
 }
 
 export default App;

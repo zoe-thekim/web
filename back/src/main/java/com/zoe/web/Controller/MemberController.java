@@ -4,17 +4,20 @@ import com.zoe.web.Entity.Member;
 import com.zoe.web.Service.MemberService;
 import jakarta.persistence.TableGenerator;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
+@Slf4j
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/member")
 public class MemberController {
     private final MemberService memberService;
 
@@ -31,24 +34,27 @@ public class MemberController {
 
     // requestbody : json 통해서 전송
     // modelAttribute : 바로 보냄
-    @PostMapping("/member/join/new")
-    public ModelAndView MemberNew(@ModelAttribute Member member) {
-        ModelAndView mav = new ModelAndView();
-        int res = memberService.SaveMember(member);
+//    @PostMapping("/member/join/new")
+//    public ModelAndView MemberNew(@ModelAttribute Member member) {
+//        ModelAndView mav = new ModelAndView();
+//        int res = memberService.SaveMember(member);
+//
+//
+//        log.info("완료");
+//        if (res == 1) {
+//            // 성공 시 리다이렉트할 URL 설정
+//            mav.setViewName("redirect:/member/Success"); // 성공 페이지 URL로 변경
+//        } else {
+//            mav.setViewName("redirect:/error-page"); // 실패 페이지 URL로 변경
+//        }
+//        return mav;
+//    }
 
-        if (res == 1) {
-            // 성공 시 리다이렉트할 URL 설정
-            mav.setViewName("redirect:/joinSuccess"); // 성공 페이지 URL로 변경
-        } else {
-            mav.setViewName("redirect:/error-page"); // 실패 페이지 URL로 변경
-        }
-        return mav;
-    }
 
 
-    @GetMapping("/joinSuccess")
+    @GetMapping("/member/Success")
     public String JoinSuccess(){
-        return "member/joinSuccess";
+        return "/member/Success";
     }
 }
 //    @PostMapping("api/user")
