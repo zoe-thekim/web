@@ -1,133 +1,114 @@
-const Login = () => {
-    return(
+import {useState} from "react";
+import axios from "axios";
+import {api} from "../api";
+import {Navigate, useNavigate} from "react-router-dom";
+import {useAuth} from "../Auth/Authenticator";
+
+export default function Login() {
+    const [MEMBER_ID, setMEMBER_ID] = useState("");
+    const [MEMBER_PWD, setMEMBER_PWD] = useState("");
+    const { login } = useAuth();
+    const navigate = useNavigate();
+
+    async function onSubmit(e){
+        e.preventDefault();
+        try{
+            await login(MEMBER_ID, MEMBER_PWD);
+            alert("로그인 성공");
+            navigate("/");
+        }catch(err){
+            alert("로그인 실패");
+            console.error(err?.response?.data || err.message);
+        }
+    }
+
+    // const handleLogin = async(e) => {
+    //     e.preventDefault();
+    //     try{
+    //         const res = await api.post("/login", {
+    //             memberId: MEMBER_ID,
+    //             memberPwd: MEMBER_PWD
+    //         });
+    //         if(res.data.status === "OK"){
+    //             console.log("로그인 성공");
+    //             Navigate("/Home");
+    //         }
+    //         else{
+    //             alert("실패");
+    //         }
+    //     }catch(err){
+    //         alert(err);
+    //     }
+        // try {
+            // const res = await axios.post("/member/login/check", {
+            //     memberId: MEMBER_ID,
+            //     memberPwd: MEMBER_PWD
+            // });
+            // if(res.data.stats === "OK"){
+            //     alert("회원가입 성공");
+            //     navigate("/");
+            // }
+        // }catch(err){
+        //     alert("회원가입 실패");
+        // }
+    // }
+    return (
         <div style={{width:'400px', margin:'20px auto'}}>
-            <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="tab-login" data-mdb-pill-init href="../Member/Login" role="tab"
-                       aria-controls="pills-login" aria-selected="true">Login</a>
+            <ul className="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                <li className="nav-item" role="presentation">
+                    <a className="nav-link" id="tab-login" data-mdb-pill-init href="../Member/Login" role="tab"
+                       aria-controls="pills-login" aria-selected="false">Login</a>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="tab-register" data-mdb-pill-init href="../Member/Join" role="tab"
-                       aria-controls="pills-register" aria-selected="false">Register</a>
+                <li className="nav-item" role="presentation">
+                    <a className="nav-link active" id="tab-register" data-mdb-pill-init href="../Member/Join"
+                       role="tab"
+                       aria-controls="pills-register" aria-selected="true">Register</a>
                 </li>
             </ul>
 
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                    <form>
-                        <div class="text-center mb-3">
-                            <p>Sign in with:</p>
-                            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
+            <div className="tab-content">
+                <div className="tab-pane fade show active" id="pills-login" role="tabpanel"
+                     aria-labelledby="tab-login">
+                    <form onSubmit={onSubmit}>
+                        <div data-mdb-input-init className="form-outline mb-4">
+                            <input type="email"
+                                   value={MEMBER_ID}
+                                   onChange={(e) => setMEMBER_ID(e.target.value)}
+                                   placeholder={"PWD"}
+                                   id="MEMBER_ID" className="form-control"/>
 
-                            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-google"></i>
-                            </button>
-
-                            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-
-                            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-github"></i>
-                            </button>
+                            <label className="form-label" htmlFor="MEMBER_ID">Email or username</label>
                         </div>
 
-                        <p class="text-center">or:</p>
-
-                        <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="email" id="loginName" class="form-control" />
-                            <label class="form-label" for="loginName">Email or username</label>
+                        <div data-mdb-input-init className="form-outline mb-4">
+                            <input type="password"
+                                   value={MEMBER_PWD}
+                                   onChange={(e) => setMEMBER_PWD(e.target.value)}
+                                   placeholder={"ID"}
+                                   id="MEMBER_PWD" className="form-control"/>
+                            <label className="form-label" htmlFor="MEMBER_PWD">Password</label>
                         </div>
 
-                        <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="password" id="loginPassword" class="form-control" />
-                            <label class="form-label" for="loginPassword">Password</label>
-                        </div>
-
-                        <div class="row mb-4">
-                            <div class="col-md-6 d-flex justify-content-center">
-                                <div class="form-check mb-3 mb-md-0">
-                                    <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-                                    <label class="form-check-label" for="loginCheck"> Remember me </label>
+                        <div className="row mb-4">
+                            <div className="col-md-6 d-flex justify-content-center">
+                                <div className="form-check mb-3 mb-md-0">
+                                    <input className="form-check-input" type="checkbox" value="" id="loginCheck"
+                                           checked/>
+                                    <label className="form-check-label" htmlFor="loginCheck"> Remember me </label>
                                 </div>
                             </div>
 
-                            <div class="col-md-6 d-flex justify-content-center">
+                            <div className="col-md-6 d-flex justify-content-center">
                                 <a href="#!">Forgot password?</a>
                             </div>
                         </div>
 
-                        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Sign in</button>
-
-                        <div class="text-center">
-                            <p>Not a member? <a href="join">Register</a></p>
-                        </div>
-                    </form>
-                </div>
-                <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                    <form>
-                        <div class="text-center mb-3">
-                            <p>Sign up with:</p>
-                            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-
-                            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-google"></i>
-                            </button>
-
-                            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-
-                            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-github"></i>
-                            </button>
-                        </div>
-
-                        <p class="text-center">or:</p>
-
-                        <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="text" id="registerName" class="form-control" />
-                            <label class="form-label" for="registerName">Name</label>
-                        </div>
-
-                        <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="text" id="registerUsername" class="form-control" />
-                            <label class="form-label" for="registerUsername">Username</label>
-                        </div>
-
-                        <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="email" id="registerEmail" class="form-control" />
-                            <label class="form-label" for="registerEmail">Email</label>
-                        </div>
-
-                        <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="password" id="registerPassword" class="form-control" />
-                            <label class="form-label" for="registerPassword">Password</label>
-                        </div>
-
-                        <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="password" id="registerRepeatPassword" class="form-control" />
-                            <label class="form-label" for="registerRepeatPassword">Repeat password</label>
-                        </div>
-
-                        <div class="form-check d-flex justify-content-center mb-4">
-                            <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-                                   aria-describedby="registerCheckHelpText" />
-                            <label class="form-check-label" for="registerCheck">
-                                I have read and agree to the terms
-                            </label>
-                        </div>
-
-                        <button type="submit" style={{width:'-webkit-fill-available'}} data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-3">Sign in</button>
+                        <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                                className="btn btn-primary btn-block mb-4">Register
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
-    )
+    );
 }
-
-export default Login;

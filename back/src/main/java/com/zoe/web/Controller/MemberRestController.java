@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.Console;
 import java.util.Map;
 
 
@@ -27,7 +29,7 @@ public class MemberRestController {
     private final SecurityConfig sc;
     private final MemberService memberService;
 
-    @PostMapping("/member/join")
+    @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody Member member, HttpServletRequest request) {
         Member m = new Member();
         m.setMemberId(member.getMemberId());
@@ -44,6 +46,7 @@ public class MemberRestController {
 //            HttpSession session = request.getSession();
 //            session.setAttribute(sessionconst);\
 
+            log.info("1");
             return ResponseEntity.ok(Map.of("status", "OK", "message", "회원가입 성공"));
 
         } else if(res == 2){
@@ -88,10 +91,14 @@ public class MemberRestController {
         ));
     }
 
-    @GetMapping("/logout")
-    public void logout(HttpSession session){
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request){
         log.info("로그아웃 요청");
-        session.invalidate();
+        var s = request.getSession(false);
+        log.info("세션 false 설정");
+        if(s != null) s.invalidate();
+        return ResponseEntity.noContent().build();
+//        session.invalidate();
 //        return ResponseEntity.ok(Map.of("status", "OK"));
     }
 }

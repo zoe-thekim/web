@@ -1,4 +1,11 @@
-const Header = () => {
+import {useAuth} from "../Auth/Authenticator";
+import {useNavigate} from "react-router-dom";
+
+
+export default function Header(){
+    const {user, logout} = useAuth();
+    const navigate = useNavigate();
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-body-tertiary" >
@@ -20,12 +27,18 @@ const Header = () => {
                             <li className="nav-item">
                                 <a className="nav-link" href="#">Pricing</a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/Member/Login">Login</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/Member/Join">Join</a>
-                            </li>
+                            {user ? (
+                                <li className="nav-item">
+                                    <a className="nav-link" onClick={async() => {
+                                    await logout();
+                                    navigate("/");
+                                    }} >LogOut</a>
+                                </li>
+                            ) :
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/Member/Login">Login</a>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -33,5 +46,3 @@ const Header = () => {
         </div>
     )
 }
-
-export default Header;
