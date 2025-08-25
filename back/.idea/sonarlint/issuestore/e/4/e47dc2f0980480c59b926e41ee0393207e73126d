@@ -1,0 +1,35 @@
+
+f
+java:S1192C"PDefine a constant instead of duplicating this literal "LOGIN_MEMBER_ID" 3 times.(ß¥¹
+c
+java:S1192/"HDefine a constant instead of duplicating this literal "message" 3 times.(–Ûº„üÿÿÿÿ
+b
+java:S1192/"GDefine a constant instead of duplicating this literal "status" 7 times.(–Ûº„üÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(éÜÑÜøÿÿÿÿ
+;
+java:S1452"&Remove usage of generic wildcard type.(Ä»ê"
+V	java:S125)"<This block of commented-out lines of code should be removed.(“ß³óÿÿÿÿÿ
+V	java:S125,"<This block of commented-out lines of code should be removed.(‚ÓëŒÿÿÿÿÿ
+A
+java:S1452:"&Remove usage of generic wildcard type.(•ºÓØÿÿÿÿÿ
+h	java:S100K"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê›Çàúÿÿÿÿ
+A
+java:S1452K"&Remove usage of generic wildcard type.(ê›Çàúÿÿÿÿ
+V	java:S125_"<This block of commented-out lines of code should be removed.(’ÙÚÓüÿÿÿÿ
+f
+java:S1192C"PDefine a constant instead of duplicating this literal "LOGIN_MEMBER_ID" 3 times.(ß¥¹
+c
+java:S1192/"HDefine a constant instead of duplicating this literal "message" 3 times.(–Ûº„üÿÿÿÿ
+b
+java:S1192/"GDefine a constant instead of duplicating this literal "status" 7 times.(–Ûº„üÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(éÜÑÜøÿÿÿÿ
+;
+java:S1452"&Remove usage of generic wildcard type.(Ä»ê"
+V	java:S125)"<This block of commented-out lines of code should be removed.(“ß³óÿÿÿÿÿ
+V	java:S125,"<This block of commented-out lines of code should be removed.(‚ÓëŒÿÿÿÿÿ
+A
+java:S1452:"&Remove usage of generic wildcard type.(•ºÓØÿÿÿÿÿ
+h	java:S100K"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê›Çàúÿÿÿÿ
+A
+java:S1452K"&Remove usage of generic wildcard type.(ê›Çàúÿÿÿÿ
+V	java:S125_"<This block of commented-out lines of code should be removed.(’ÙÚÓüÿÿÿÿ

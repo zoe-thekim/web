@@ -18,6 +18,6 @@ public class Member {
     @Column(name = "member_id", nullable = false, length = 30)
     private String memberId;
 
-    @Column(name = "member_pwd", nullable = false, length = 30)
+    @Column(name = "member_pwd", nullable = false)
     private String memberPwd;
 }

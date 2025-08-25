@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import java.io.Console;
 @Slf4j
 @RestController
-@CrossOrigin("http://localhost:3000")
 public class MainRestController {
     @GetMapping("/")
     public String main_main(Model model)

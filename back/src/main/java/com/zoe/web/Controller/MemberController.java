@@ -8,10 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 @Slf4j
@@ -23,12 +20,12 @@ public class MemberController {
 
     @GetMapping("/login")
     public String login() {
-        return "member/login";
+        return "/member/login";
     }
 
     @GetMapping("/join")
     public String join() {
-        return "member/join";
+        return "/member/join";
     }
 
 
@@ -49,7 +46,6 @@ public class MemberController {
 //        }
 //        return mav;
 //    }
-
 
 
     @GetMapping("/member/Success")
